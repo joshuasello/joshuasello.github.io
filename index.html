@@ -3,8 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <title>Joshua Sello</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Poppins Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+            background: #ffffff;
+            overflow: hidden;
+        }
+
+        /* Floating gradient circles */
+        .blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.35;
+            animation: float 25s ease-in-out infinite alternate;
+        }
+
+        .blob1 {
+            background: radial-gradient(circle, rgba(0,120,255,50.0) 0%, transparent 50%);
+            top: -100px;
+            left: -100px;
+        }
+
+        .blob2 {
+            background: radial-gradient(circle, rgba(0,200,150,50.0) 0%, transparent 50%);
+            bottom: -150px;
+            right: -100px;
+            animation-duration: 30s;
+        }
+
+        .blob3 {
+            background: radial-gradient(circle, rgba(120,80,255,50.0) 0%, transparent 50%);
+            top: 40%;
+            left: 60%;
+            animation-duration: 35s;
+        }
+
+        @keyframes float {
+            from {
+                transform: translate(0px, 0px);
+            }
+            to {
+                transform: translate(100px, 60px);
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            color: #111;
+            margin-bottom: 0.8rem;
+        }
+
+        .subtitle {
+            font-size: 1.05rem;
+            color: #555;
+            margin-bottom: 2.5rem;
+        }
+
+        .contact {
+            font-size: 0.95rem;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        .contact a {
+            color: #111;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(0,0,0,0.2);
+            transition: opacity 0.2s ease;
+        }
+
+        .contact a:hover {
+            opacity: 0.6;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 20px;
+            font-size: 0.8rem;
+            color: #888;
+        }
+    </style>
 </head>
+
 <body>
-<p>Hello world.</p>
+
+<div class="blob blob1"></div>
+<div class="blob blob2"></div>
+<div class="blob blob3"></div>
+
+<div class="container">
+    <h1>Joshua Sello.</h1>
+    <div class="subtitle">
+        Electronic Engineer · Researcher · Sustainable Mobility
+    </div>
+
+    <div class="contact">
+        Email: <a href="mailto:jtsello@sun.ac.za">jtsello@sun.ac.za</a><br>
+        LinkedIn: <a href="https://linkedin.com/in/joshuasello" target="_blank">linkedin.com/in/joshuasello</a><br>
+        GitHub: <a href="https://github.com/joshuasello" target="_blank">github.com/joshuasello</a>
+    </div>
+
+    <footer>
+        © 2026 Joshua Sello
+    </footer>
+</div>
+
 </body>
 </html>
