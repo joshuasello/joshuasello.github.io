@@ -2,140 +2,109 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Joshua Sello</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Academic portfolio for Joshua Sello, electronic engineer and researcher in sustainable mobility.">
+    <title>Joshua Sello | Academic Portfolio</title>
 
-    <!-- Poppins Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            height: 100%;
-            font-family: 'Poppins', sans-serif;
-            background: #ffffff;
-            overflow: hidden;
-        }
-
-        /* Floating gradient circles */
-        .blob {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.35;
-            animation: float 25s ease-in-out infinite alternate;
-        }
-
-        .blob1 {
-            background: radial-gradient(circle, rgba(0,120,255,50.0) 0%, transparent 50%);
-            top: -100px;
-            left: -100px;
-        }
-
-        .blob2 {
-            background: radial-gradient(circle, rgba(0,200,150,50.0) 0%, transparent 50%);
-            bottom: -150px;
-            right: -100px;
-            animation-duration: 30s;
-        }
-
-        .blob3 {
-            background: radial-gradient(circle, rgba(120,80,255,50.0) 0%, transparent 50%);
-            top: 40%;
-            left: 60%;
-            animation-duration: 35s;
-        }
-
-        @keyframes float {
-            from {
-                transform: translate(0px, 0px);
-            }
-            to {
-                transform: translate(100px, 60px);
-            }
-        }
-
-        .container {
-            position: relative;
-            z-index: 1;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        h1 {
-            font-size: 2.8rem;
-            font-weight: 600;
-            letter-spacing: -0.5px;
-            color: #111;
-            margin-bottom: 0.8rem;
-        }
-
-        .subtitle {
-            font-size: 1.05rem;
-            color: #555;
-            margin-bottom: 2.5rem;
-        }
-
-        .contact {
-            font-size: 0.95rem;
-            color: #333;
-            line-height: 1.8;
-        }
-
-        .contact a {
-            color: #111;
-            text-decoration: none;
-            border-bottom: 1px solid rgba(0,0,0,0.2);
-            transition: opacity 0.2s ease;
-        }
-
-        .contact a:hover {
-            opacity: 0.6;
-        }
-
-        footer {
-            position: absolute;
-            bottom: 20px;
-            font-size: 0.8rem;
-            color: #888;
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
 <body>
+    <header class="site-header">
+        <nav class="nav" aria-label="Primary navigation">
+            <a class="brand" href="#top">Joshua Sello</a>
+            <div class="nav-links">
+                <a href="#research">Research</a>
+                <a href="#publications">Publications</a>
+                <a href="#preprints">Preprints</a>
+                <a href="#updates">Updates</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
 
-<div class="blob blob1"></div>
-<div class="blob blob2"></div>
-<div class="blob blob3"></div>
+    <main id="top">
+        <section class="hero" aria-labelledby="page-title">
+            <div>
+                <p class="eyebrow">Electronic engineer · Researcher · Sustainable mobility</p>
+                <h1 id="page-title">Joshua Sello</h1>
+                <p class="intro">
+                    I study intelligent, efficient, and sustainable mobility systems, with interests spanning electronic engineering,
+                    data-driven transport, energy-aware infrastructure, and practical tools for cleaner urban movement.
+                </p>
+                <div class="hero-actions" aria-label="Profile links">
+                    <a class="button" href="#publications">View Publications</a>
+                    <a class="button secondary" href="mailto:jtsello@sun.ac.za">Email Me</a>
+                </div>
+            </div>
 
-<div class="container">
-    <h1>Joshua Sello.</h1>
-    <div class="subtitle">
-        Electronic Engineer · Researcher · Sustainable Mobility
-    </div>
+            <aside class="profile-panel" id="contact" aria-label="Contact information">
+                <h2>Current Focus</h2>
+                <p>
+                    Research in electronic engineering and sustainable mobility. This site collects publications,
+                    preprints, selected projects, and academic updates.
+                </p>
+                <ul class="contact-list">
+                    <li><strong>Email:</strong> <a href="mailto:jtsello@sun.ac.za">jtsello@sun.ac.za</a></li>
+                    <li><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/joshuasello" target="_blank" rel="noreferrer">linkedin.com/in/joshuasello</a></li>
+                    <li><strong>GitHub:</strong> <a href="https://github.com/joshuasello" target="_blank" rel="noreferrer">github.com/joshuasello</a></li>
+                    <li><strong>Google Scholar:</strong> <a href="#" aria-label="Add Google Scholar profile link">Add profile link</a></li>
+                </ul>
+            </aside>
+        </section>
 
-    <div class="contact">
-        Email: <a href="mailto:jtsello@sun.ac.za">jtsello@sun.ac.za</a><br>
-        LinkedIn: <a href="https://linkedin.com/in/joshuasello" target="_blank">linkedin.com/in/joshuasello</a><br>
-        GitHub: <a href="https://github.com/joshuasello" target="_blank">github.com/joshuasello</a>
-    </div>
+        <section class="section" id="research" aria-labelledby="research-title">
+            <div class="section-heading">
+                <h2 id="research-title">Research</h2>
+                <p>
+                    A compact view of the questions and technical areas I am currently building around.
+                    Update these blocks as your portfolio matures.
+                </p>
+            </div>
+            <div class="research-grid" data-render="research"></div>
+        </section>
 
-    <footer>
-        © 2026 Joshua Sello
+        <section class="section" id="publications" aria-labelledby="publications-title">
+            <div class="section-heading">
+                <h2 id="publications-title">Publications</h2>
+                <p>
+                    Peer-reviewed papers, conference proceedings, book chapters, and technical reports.
+                    Edit entries in <code>assets/js/content.js</code>.
+                </p>
+            </div>
+            <ol class="publication-list" data-render="publications"></ol>
+        </section>
+
+        <section class="section" id="preprints" aria-labelledby="preprints-title">
+            <div class="section-heading">
+                <h2 id="preprints-title">Preprints</h2>
+                <p>
+                    Public drafts, working papers, arXiv entries, institutional repository links, and work under review.
+                </p>
+            </div>
+            <ol class="publication-list" data-render="preprints"></ol>
+        </section>
+
+        <section class="section" id="updates" aria-labelledby="updates-title">
+            <div class="section-heading">
+                <h2 id="updates-title">Updates</h2>
+                <p>
+                    Short academic updates: accepted papers, invited talks, released data, thesis milestones,
+                    or conference travel.
+                </p>
+            </div>
+            <ol class="news-list" data-render="updates"></ol>
+        </section>
+    </main>
+
+    <footer class="footer">
+        © 2026 Joshua Sello. Built as a lightweight static academic portfolio.
     </footer>
-</div>
 
+    <script src="assets/js/content.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
