@@ -26,9 +26,61 @@ const links = [
 
 const show_projects = projects.length > 0;
 const show_articles = articles.length > 0;
+
+const structured_data = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://joshuasello.com/#website",
+      url: "https://joshuasello.com/",
+      name: "Joshua Sello",
+      inLanguage: "en",
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "https://joshuasello.com/#profile",
+      url: "https://joshuasello.com/",
+      name: "Joshua Sello | Electric Mobility and Transport Systems Researcher",
+      isPartOf: {
+        "@id": "https://joshuasello.com/#website",
+      },
+      mainEntity: {
+        "@id": "https://joshuasello.com/#person",
+      },
+    },
+    {
+      "@type": "Person",
+      "@id": "https://joshuasello.com/#person",
+      name: "Joshua Sello",
+      url: "https://joshuasello.com/",
+      jobTitle: "Electronic Engineer and Researcher",
+      description:
+        "Electronic engineer and researcher studying electric minibus taxis, mobility data, transport networks, and sustainable infrastructure in South Africa.",
+      affiliation: {
+        "@type": "CollegeOrUniversity",
+        name: "Stellenbosch University",
+        url: "https://www.sun.ac.za/",
+      },
+      sameAs: [
+        "https://linkedin.com/in/joshuasello",
+        "https://github.com/joshuasello",
+        "https://orcid.org/0009-0008-1263-3434",
+      ],
+      knowsAbout: [
+        "Electric mobility",
+        "Sustainable transport",
+        "Mobility data",
+        "Transport networks",
+        "Energy-aware infrastructure",
+        "Minibus-taxi electrification",
+      ],
+    },
+  ],
+};
 ---
 
-<BaseLayout home>
+<BaseLayout home structured_data={structured_data}>
   <div
     class="grid grid-cols-[11rem_minmax(0,1fr)] items-start gap-[clamp(4rem,8vw,7rem)] max-lg:grid-cols-1 max-lg:gap-16"
   >

@@ -8,18 +8,24 @@ interface Props {
     description?: string;
     reader?: boolean;
     home?: boolean;
+    structured_data?: Record<string, unknown>;
 }
 
 const {
-    title = "Joshua Sello | Portfolio",
-    description = "Portfolio for Joshua Sello, electronic engineer and researcher in sustainable mobility.",
+    title = "Joshua Sello | Electric Mobility and Transport Systems Researcher",
+    description = "Joshua Sello is an electronic engineer and researcher studying electric minibus taxis, mobility data, transport networks, and sustainable infrastructure in South Africa.",
     reader = false,
-    home = false
+    home = false,
+    structured_data
 } = Astro.props;
 
 const canonical = Astro.site
     ? new URL(Astro.url.pathname, Astro.site)
     : Astro.url;
+
+const structured_data_json = structured_data
+    ? JSON.stringify(structured_data).replaceAll("<", "\\u003c")
+    : undefined;
 ---
 
 <!doctype html>
@@ -30,11 +36,24 @@ const canonical = Astro.site
         <meta name="description" content={description} />
         <meta name="generator" content={Astro.generator} />
         <link rel="canonical" href={canonical} />
+        <link rel="sitemap" href="/sitemap-index.xml" />
+
+        <link rel="icon" href="/icons/favicon.png" type="image/png" sizes="360x360" />
+        <link rel="icon" href="/icons/favicon-32x32.png" type="image/png" sizes="32x32" />
+        <link rel="icon" href="/icons/favicon-16x16.png" type="image/png" sizes="16x16" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <meta name="theme-color" content="#ffffff" />
 
         <meta property="og:type" content={reader ? "article" : "website"} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:url" content={canonical} />
+
+        {structured_data_json && (
+            <script is:inline type="application/ld+json" set:html={structured_data_json} />
+        )}
 
         <title>{title}</title>
     </head>
