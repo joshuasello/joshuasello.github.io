@@ -1,0 +1,62 @@
+---
+import type { ContentEntry } from "../utils/content";
+import { format_date } from "../utils/content";
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+    entry: ContentEntry;
+    type: "Article" | "Project";
+}
+
+const { entry, type } = Astro.props;
+const links = "links" in entry.data ? entry.data.links : [];
+---
+
+<BaseLayout
+    title={`${entry.data.title} | Joshua Sello`}
+    description={entry.data.summary}
+    reader
+>
+    <article>
+        <header class="border-b border-neutral-200 py-10 pt-20 max-sm:pt-14">
+            <p class="mb-5 text-[0.68rem] font-semibold tracking-[0.08em] text-neutral-400 uppercase">
+                {type}
+            </p>
+            <h1 class="m-0 max-w-xl text-[clamp(2rem,5vw,3.35rem)] leading-[1.08] font-normal tracking-[-0.025em]">
+                {entry.data.title}
+            </h1>
+            <p class="mt-6 max-w-lg text-[0.95rem] text-neutral-500">{entry.data.summary}</p>
+            <div class="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-[0.7rem] text-neutral-400">
+                <time datetime={entry.data.date.toISOString()}>
+                    {format_date(entry.data.date)}
+                </time>
+                {entry.data.tags.length > 0 && <span>{entry.data.tags.join(" · ")}</span>}
+            </div>
+            {
+                links.length > 0 && (
+                    <div class="mt-2.5 flex flex-wrap gap-3 text-[0.7rem]">
+                        {links.map((link) => (
+                            <a
+                                class="underline decoration-neutral-400 underline-offset-2 transition-colors hover:text-neutral-500"
+                                href={link.url}
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                {link.label}
+                            </a>
+                        ))}
+                    </div>
+                )
+            }
+        </header>
+        <div class="post-body py-12 pb-20 text-base leading-[1.7]">
+            <slot />
+        </div>
+    </article>
+
+    <nav class="pb-16 text-xs text-neutral-500" aria-label="Back to portfolio">
+        <a class="underline decoration-neutral-400 underline-offset-2 hover:text-neutral-900" href="/">
+            ← Back to the portfolio
+        </a>
+    </nav>
+</BaseLayout>

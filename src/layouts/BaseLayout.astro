@@ -1,0 +1,58 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+
+interface Props {
+    title?: string;
+    description?: string;
+    reader?: boolean;
+    home?: boolean;
+}
+
+const {
+    title = "Joshua Sello | Portfolio",
+    description = "Portfolio for Joshua Sello, electronic engineer and researcher in sustainable mobility.",
+    reader = false,
+    home = false
+} = Astro.props;
+
+const canonical = Astro.site
+    ? new URL(Astro.url.pathname, Astro.site)
+    : Astro.url;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content={description} />
+        <meta name="generator" content={Astro.generator} />
+        <link rel="canonical" href={canonical} />
+
+        <meta property="og:type" content={reader ? "article" : "website"} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonical} />
+
+        <title>{title}</title>
+    </head>
+    <body
+        class="min-h-screen bg-white font-serif text-sm leading-[1.55] text-neutral-900 antialiased [text-rendering:optimizeLegibility]"
+    >
+        {!home && <Header />}
+        <main
+            class:list={[
+                {
+                    "mx-auto w-[calc(100%-4rem)] max-w-2xl max-sm:w-[calc(100%-3rem)]": reader,
+                    "mx-auto min-h-[calc(100vh-13rem)] w-[calc(100%-8rem)] max-w-6xl py-14 pb-32 max-lg:w-[calc(100%-4rem)] max-sm:w-[calc(100%-3rem)] max-sm:pt-8":
+                        home
+                }
+            ]}
+        >
+            <slot />
+        </main>
+        <Footer />
+    </body>
+</html>

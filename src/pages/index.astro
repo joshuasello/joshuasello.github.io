@@ -1,0 +1,306 @@
+---
+import { getCollection } from "astro:content";
+import ContentCard from "../components/ContentCard.astro";
+import PublicationList from "../components/PublicationList.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { preprints, publications, public_works, research, updates } from "../data/portfolio";
+import { by_newest } from "../utils/content";
+
+const articles = (
+  await getCollection("articles", ({ data }) => !data.draft)
+).sort(by_newest);
+
+const projects = (
+  await getCollection("projects", ({ data }) => !data.draft)
+).sort(by_newest);
+
+const links = [
+  { href: "/#research", label: "Research" },
+  { href: "/#publications", label: "Publications" },
+  { href: "/#public-works", label: "Public Works" },
+  { href: "/#preprints", label: "Preprints" },
+  // { href: "/#projects", label: "Projects" },
+  // { href: "/#writing", label: "Writing" },
+  { href: "/#updates", label: "Updates" },
+];
+
+const show_projects = projects.length > 0;
+const show_articles = articles.length > 0;
+---
+
+<BaseLayout home>
+  <div
+    class="grid grid-cols-[11rem_minmax(0,1fr)] items-start gap-[clamp(4rem,8vw,7rem)] max-lg:grid-cols-1 max-lg:gap-16"
+  >
+    <aside
+      class="sticky top-14 max-w-sm max-lg:static"
+      id="contact"
+      aria-labelledby="page-title"
+    >
+      <a class="block no-underline" href="/">
+        <h1
+          class="m-0 text-[0.95rem] leading-tight font-medium tracking-[0.025em]"
+          id="page-title"
+        >
+          Joshua Sello
+        </h1>
+      </a>
+      <div
+        class="mt-6 grid gap-4 text-[0.78rem] leading-[1.65] text-neutral-700"
+      >
+        <p>
+          I am an electronic engineer and researcher working on intelligent,
+          efficient, and sustainable mobility systems.
+        </p>
+        <p>
+          My interests span data-driven transport, energy-aware infrastructure,
+          embedded intelligence, and practical tools for cleaner urban movement.
+        </p>
+      </div>
+      <nav
+        class="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-[0.72rem] text-neutral-500"
+        aria-label="Profile links"
+      >
+        <a
+          class="underline decoration-neutral-400 underline-offset-2 hover:text-neutral-900"
+          href="mailto:jtsello@sun.ac.za"
+        >
+          Email
+        </a>
+        <a
+          class="underline decoration-neutral-400 underline-offset-2 hover:text-neutral-900"
+          href="https://linkedin.com/in/joshuasello"
+          target="_blank"
+          rel="noreferrer">LinkedIn</a
+        >
+        <a
+          class="underline decoration-neutral-400 underline-offset-2 hover:text-neutral-900"
+          href="https://github.com/joshuasello"
+          target="_blank"
+          rel="noreferrer">GitHub</a
+        >
+        <a
+          class="underline decoration-neutral-400 underline-offset-2 hover:text-neutral-900"
+          href="https://orcid.org/0009-0008-1263-3434"
+          target="_blank"
+          rel="noreferrer">ORCID</a
+        >
+        <a
+          class="underline decoration-neutral-400 underline-offset-2 hover:text-neutral-900"
+          href="https://ev.sun.ac.za/"
+          target="_blank"
+          rel="noreferrer">Electric Mobility Lab</a
+        >
+      </nav>
+    </aside>
+
+    <div class="min-w-0">
+      <nav
+        class="grid grid-cols-5 gap-x-10 gap-y-7 pb-22 max-lg:pb-18 max-sm:grid-cols-2 max-sm:gap-6"
+        aria-label="Portfolio sections"
+      >
+        {
+          links.map((link) => (
+            <a
+              class="text-[0.78rem] font-bold tracking-[0.025em] no-underline transition-colors hover:text-neutral-500"
+              href={link.href}
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <!-- Section: Research -->
+      <section
+        class="scroll-mt-8 border-t border-neutral-200 py-10 pb-22 max-sm:pb-16"
+        id="research"
+        aria-labelledby="research-title"
+      >
+        <div
+          class="mb-10 grid grid-cols-[8rem_minmax(0,1fr)] gap-8 max-sm:mb-7 max-sm:grid-cols-1 max-sm:gap-2.5"
+        >
+          <h2
+            class="m-0 text-[0.8rem] leading-tight font-bold tracking-[0.025em]"
+            id="research-title"
+          >
+            Research
+          </h2>
+          <p class="max-w-lg text-[0.78rem] text-neutral-500">
+            Current questions and technical areas that shape my work.
+          </p>
+        </div>
+        <div class="grid">
+          {
+            research.map((item) => (
+              <article class="grid grid-cols-[12rem_minmax(0,1fr)] gap-8 border-t border-neutral-200 py-5 last:border-b max-sm:grid-cols-1 max-sm:gap-2.5">
+                <h3 class="m-0 text-[0.82rem] leading-[1.45] font-semibold">
+                  {item.title}
+                </h3>
+                <p class="text-[0.78rem] text-neutral-500">
+                  {item.description}
+                </p>
+              </article>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- Section: Publications -->
+      <section
+        class="scroll-mt-8 border-t border-neutral-200 py-10 pb-22 max-sm:pb-16"
+        id="publications"
+        aria-labelledby="publications-title"
+      >
+        <div
+          class="mb-10 grid grid-cols-[8rem_minmax(0,1fr)] gap-8 max-sm:mb-7 max-sm:grid-cols-1 max-sm:gap-2.5"
+        >
+          <h2
+            class="m-0 text-[0.8rem] leading-tight font-bold tracking-[0.025em]"
+            id="publications-title"
+          >
+            Publications
+          </h2>
+          <p class="max-w-lg text-[0.78rem] text-neutral-500">
+            Peer-reviewed papers, conference proceedings, and technical reports.
+          </p>
+        </div>
+        <PublicationList items={publications} />
+      </section>
+
+      <!-- Section: Public Works -->
+      <section
+        class="scroll-mt-8 border-t border-neutral-200 py-10 pb-22 max-sm:pb-16"
+        id="public-works"
+        aria-labelledby="public-works-title"
+      >
+        <div
+          class="mb-10 grid grid-cols-[8rem_minmax(0,1fr)] gap-8 max-sm:mb-7 max-sm:grid-cols-1 max-sm:gap-2.5"
+        >
+          <h2
+            class="m-0 text-[0.8rem] leading-tight font-bold tracking-[0.025em]"
+            id="public-works-title"
+          >
+            Public Works
+          </h2>
+          <p class="max-w-lg text-[0.78rem] text-neutral-500">
+            Public works and articles.
+          </p>
+        </div>
+        <PublicationList items={public_works} />
+      </section>
+
+      <!-- Section: Preprints -->
+      <section
+        class="scroll-mt-8 border-t border-neutral-200 py-10 pb-22 max-sm:pb-16"
+        id="preprints"
+        aria-labelledby="preprints-title"
+      >
+        <div
+          class="mb-10 grid grid-cols-[8rem_minmax(0,1fr)] gap-8 max-sm:mb-7 max-sm:grid-cols-1 max-sm:gap-2.5"
+        >
+          <h2
+            class="m-0 text-[0.8rem] leading-tight font-bold tracking-[0.025em]"
+            id="preprints-title"
+          >
+            Preprints
+          </h2>
+          <p class="max-w-lg text-[0.78rem] text-neutral-500">
+            Public drafts, working papers, and work currently under review.
+          </p>
+        </div>
+        <PublicationList items={preprints} />
+      </section>
+
+      <!-- Section: Projects -->
+      {
+        show_projects && (
+          <section
+            class="scroll-mt-8 border-t border-neutral-200 py-10 pb-22 max-sm:pb-16"
+            id="projects"
+            aria-labelledby="projects-title"
+          >
+            <div class="mb-10 grid grid-cols-[8rem_minmax(0,1fr)] gap-8 max-sm:mb-7 max-sm:grid-cols-1 max-sm:gap-2.5">
+              <h2
+                class="m-0 text-[0.8rem] leading-tight font-bold tracking-[0.025em]"
+                id="projects-title"
+              >
+                Projects
+              </h2>
+              <p class="max-w-lg text-[0.78rem] text-neutral-500">
+                Selected engineering and research projects, including methods,
+                outcomes, and lessons learned.
+              </p>
+            </div>
+            <div class="grid">
+              {projects.map((entry) => (
+                <ContentCard entry={entry} type="project" />
+              ))}
+            </div>
+          </section>
+        )
+      }
+
+      <!-- Section: Writing -->
+      {
+        show_articles && (
+          <section
+            class="scroll-mt-8 border-t border-neutral-200 py-10 pb-22 max-sm:pb-16"
+            id="writing"
+            aria-labelledby="writing-title"
+          >
+            <div class="mb-10 grid grid-cols-[8rem_minmax(0,1fr)] gap-8 max-sm:mb-7 max-sm:grid-cols-1 max-sm:gap-2.5">
+              <h2
+                class="m-0 text-[0.8rem] leading-tight font-bold tracking-[0.025em]"
+                id="writing-title"
+              >
+                Writing
+              </h2>
+              <p class="max-w-lg text-[0.78rem] text-neutral-500">
+                Technical explainers, field notes, and reflections from work in
+                progress.
+              </p>
+            </div>
+            <div class="grid">
+              {articles.map((entry) => (
+                <ContentCard entry={entry} type="article" />
+              ))}
+            </div>
+          </section>
+        )
+      }
+
+      <!-- Section: Updates -->
+      <section
+        class="scroll-mt-8 border-t border-neutral-200 pt-10"
+        id="updates"
+        aria-labelledby="updates-title"
+      >
+        <div
+          class="mb-10 grid grid-cols-[8rem_minmax(0,1fr)] gap-8 max-sm:mb-7 max-sm:grid-cols-1 max-sm:gap-2.5"
+        >
+          <h2
+            class="m-0 text-[0.8rem] leading-tight font-bold tracking-[0.025em]"
+            id="updates-title"
+          >
+            Updates
+          </h2>
+          <p class="max-w-lg text-[0.78rem] text-neutral-500">
+            Short notes on papers, talks, released work, and research
+            milestones.
+          </p>
+        </div>
+        <ol class="m-0 grid list-none p-0">
+          {
+            updates.map((item) => (
+              <li class="grid grid-cols-[8rem_minmax(0,1fr)] gap-6 border-t border-neutral-200 py-4 last:border-b max-sm:grid-cols-1 max-sm:gap-2.5">
+                <div class="text-[0.72rem] text-neutral-400">{item.date}</div>
+                <p class="text-[0.78rem]">{item.text}</p>
+              </li>
+            ))
+          }
+        </ol>
+      </section>
+    </div>
+  </div>
+</BaseLayout>

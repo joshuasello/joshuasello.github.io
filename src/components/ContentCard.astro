@@ -1,0 +1,61 @@
+---
+import type { ContentEntry } from "../utils/content";
+import { format_date } from "../utils/content";
+
+interface Props {
+    entry: ContentEntry;
+    type: "article" | "project";
+}
+
+const { entry, type } = Astro.props;
+const href = `/${type === "article" ? "articles" : "projects"}/${entry.id}/`;
+const links = "links" in entry.data ? entry.data.links : [];
+---
+
+<article
+    class="grid grid-cols-[8rem_minmax(10rem,0.7fr)_minmax(0,1fr)_auto] items-baseline gap-6 border-t border-neutral-200 py-5 last:border-b max-lg:grid-cols-[8rem_minmax(0,1fr)_auto] max-sm:grid-cols-[1fr_auto] max-sm:gap-x-4 max-sm:gap-y-2"
+>
+    <div
+        class="grid gap-1 text-[0.68rem] leading-[1.4] text-neutral-400 max-sm:col-span-full max-sm:flex max-sm:gap-3"
+    >
+        <time datetime={entry.data.date.toISOString()}>
+            {format_date(entry.data.date)}
+        </time>
+        {entry.data.tags.length > 0 && <span>{entry.data.tags.join(" · ")}</span>}
+    </div>
+
+    <h3 class="m-0 text-[0.82rem] leading-[1.45] font-semibold">
+        <a class="no-underline transition-colors hover:text-neutral-500" href={href}>
+            {entry.data.title}
+        </a>
+    </h3>
+    <p
+        class="text-[0.78rem] text-neutral-500 max-lg:col-[2/-1] max-sm:col-span-full"
+    >
+        {entry.data.summary}
+    </p>
+
+    {
+        links.length > 0 && (
+            <div class="col-[2/-1] -mt-3 flex flex-wrap gap-3 text-[0.7rem] max-lg:mt-0 max-sm:col-span-full">
+                {links.map((link) => (
+                    <a
+                        class="underline decoration-neutral-400 underline-offset-2 transition-colors hover:text-neutral-500"
+                        href={link.url}
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        {link.label}
+                    </a>
+                ))}
+            </div>
+        )
+    }
+
+    <a
+        class="whitespace-nowrap text-[0.7rem] text-neutral-500 no-underline transition-colors hover:text-neutral-900 max-sm:col-span-full max-sm:mt-1"
+        href={href}
+    >
+        {type === "project" ? "View project →" : "Read article →"}
+    </a>
+</article>

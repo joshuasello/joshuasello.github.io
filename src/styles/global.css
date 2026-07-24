@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@layer base {
+    html {
+        @apply scroll-smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+    }
+}
+
+/*
+ * Markdown is rendered from Astro content collections, so these child elements
+ * cannot receive utility classes in a template. Keep their typography composed
+ * from Tailwind utilities here.
+ */
+@layer components {
+    .post-body > :first-child {
+        @apply mt-0;
+    }
+
+    .post-body h2,
+    .post-body h3,
+    .post-body h4 {
+        @apply mt-9 mb-3 scroll-mt-8 leading-tight font-semibold;
+    }
+
+    .post-body h2 {
+        @apply text-2xl;
+    }
+
+    .post-body h3 {
+        @apply text-lg;
+    }
+
+    .post-body h4 {
+        @apply text-base;
+    }
+
+    .post-body p,
+    .post-body ul,
+    .post-body ol,
+    .post-body blockquote,
+    .post-body table {
+        @apply mb-5;
+    }
+
+    .post-body ul {
+        @apply list-disc pl-6;
+    }
+
+    .post-body ol {
+        @apply list-decimal pl-6;
+    }
+
+    .post-body li + li {
+        @apply mt-1.5;
+    }
+
+    .post-body a {
+        @apply underline decoration-neutral-400 underline-offset-2 transition-colors hover:text-neutral-500;
+    }
+
+    .post-body blockquote {
+        @apply ml-0 border-l border-neutral-900 pl-5 text-neutral-500;
+    }
+
+    .post-body pre {
+        @apply my-7 overflow-x-auto border border-neutral-200 bg-neutral-50 p-5 text-[0.78rem] leading-relaxed;
+    }
+
+    .post-body :not(pre) > code {
+        @apply bg-neutral-100 px-1 py-0.5 text-[0.88em];
+    }
+
+    .post-body img {
+        @apply mx-auto my-8 block h-auto max-w-full;
+    }
+
+    .post-body hr {
+        @apply my-10 border-0 border-t border-neutral-200;
+    }
+
+    .post-body table {
+        @apply w-full border-collapse text-sm;
+    }
+
+    .post-body th,
+    .post-body td {
+        @apply border-b border-neutral-200 px-3 py-2 text-left align-top;
+    }
+}
